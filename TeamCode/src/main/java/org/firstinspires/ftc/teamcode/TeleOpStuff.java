@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.ColorRangeSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -9,29 +11,31 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class TeleOpStuff {
 
 
-    @TeleOp(name = "TeleOpFourWheelDrive")
-    public class TeleOpFourWheelDrive extends LinearOpMode {
+    @TeleOp(name = "TeleOpBeginnings")
+    public class TeleOpBeginnings extends LinearOpMode {
 
         private DcMotor frontLeft;
         private DcMotor frontRight;
         private DcMotor backLeft;
         private DcMotor backRight;
+        private DcMotor armBase;
+        private ColorSensor colSense;
         private Servo theServo;
 
-        // Init gamepad + motors
-
-        @Override
+        // Init gamepad, motors + servo
         public void runOpMode() {
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
             backLeft = hardwareMap.get(DcMotor.class, "backLeft");
             backRight = hardwareMap.get(DcMotor.class, "backRight");
+            armBase = hardwareMap.get(DcMotor.class, "armBase");
+            colSense = hardwareMap.get(ColorSensor.class, "colSense");
             theServo = hardwareMap.get(Servo.class, "theServo");
 
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             backLeft.setDirection(DcMotor.Direction.REVERSE);
-
+            // Main loop for the motors
             waitForStart();
             while (opModeIsActive()) {
                 double leftFrontPower;
@@ -39,7 +43,7 @@ public class TeleOpStuff {
                 double leftBackPower;
                 double rightBackPower;
 
-
+                // Gamepad movement code
                 double drive = -gamepad1.left_stick_y;
                 double strafe = gamepad1.left_stick_x;
                 double turn = gamepad1.right_stick_x;
@@ -47,8 +51,14 @@ public class TeleOpStuff {
                 rightFrontPower = Range.clip(drive - turn - strafe, -1, 1);
                 leftBackPower = Range.clip(drive + turn - strafe, -1, 1);
                 rightBackPower = Range.clip(drive - turn + strafe, -1, 1);
+                if (gamepad1.left_bumper) {
+                    leftFrontPower /= 4;
+                    leftBackPower /= 4;
+                    rightFrontPower /= 4;
+                    rightBackPower /= 4;
+                }
 
-                if(gamepad1.right_bumper){
+                if (gamepad1.right_bumper) {
                     leftFrontPower /= 2;
                     leftBackPower /= 2;
                     rightFrontPower /= 2;
@@ -60,11 +70,16 @@ public class TeleOpStuff {
                 backLeft.setPower(leftBackPower);
                 backRight.setPower(rightBackPower);
 
-                if (gamepad1.left_bumper){
+                // Gamepad servo movement code
+                if (gamepad2.left_bumper) {
                     theServo.setPosition(1);
                 } else {
                     theServo.setPosition(0);
                 }
+
+
+
+                // Old code below
                 // double max;
 
                 // double axial = -gamepad1.left_stick_y;
