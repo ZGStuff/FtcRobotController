@@ -71,11 +71,11 @@ public class TeleOpStuff {
                 backRight.setPower(rightBackPower);
 
                 // Gamepad servo movement code
-                if (gamepad2.left_bumper) {
-                    theServo.setPosition(1);
-                } else {
-                    theServo.setPosition(0);
-                }
+//                if (gamepad2.left_bumper) {
+//                    theServo.setPosition(1);
+//                } else {
+//                    theServo.setPosition(0);
+//                }
 
 
 
