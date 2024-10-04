@@ -4,9 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-public class LearningAutonomousJunk {
+
     @Autonomous(name = "LinearAuto")
-    public class LinearAuto extends LinearOpMode{
+    public class LearningAutonomousJunk extends LinearOpMode{
         private DcMotor frontLeft;
         private DcMotor frontRight;
         private DcMotor backLeft;
@@ -63,4 +63,4 @@ public class LearningAutonomousJunk {
             backLeft.setPower(0);
             backRight.setPower(0);
         }
-}}
+}

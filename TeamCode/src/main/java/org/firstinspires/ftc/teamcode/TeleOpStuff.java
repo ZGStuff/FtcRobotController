@@ -8,19 +8,19 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.util.Range;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class TeleOpStuff {
 
 
-    @TeleOp(name = "TeleOpBeginnings")
-    public class TeleOpBeginnings extends LinearOpMode {
+
+    @TeleOp(name = "TeleOpStuff")
+    public class TeleOpStuff extends LinearOpMode {
 
         private DcMotor frontLeft;
         private DcMotor frontRight;
         private DcMotor backLeft;
         private DcMotor backRight;
-        private DcMotor armBase;
-        private ColorSensor colSense;
-        private Servo theServo;
+//        private DcMotor armBase;
+//        private ColorSensor colSense;
+//        private Servo theServo;
 
         // Init gamepad, motors + servo
         @Override
@@ -29,9 +29,9 @@ public class TeleOpStuff {
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
             backLeft = hardwareMap.get(DcMotor.class, "backLeft");
             backRight = hardwareMap.get(DcMotor.class, "backRight");
-            armBase = hardwareMap.get(DcMotor.class, "armBase");
-            colSense = hardwareMap.get(ColorSensor.class, "colSense");
-            theServo = hardwareMap.get(Servo.class, "theServo");
+//            armBase = hardwareMap.get(DcMotor.class, "armBase");
+//            colSense = hardwareMap.get(ColorSensor.class, "colSense");
+//            theServo = hardwareMap.get(Servo.class, "theServo");
 
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -136,5 +136,3 @@ public class TeleOpStuff {
             }
         }
     }
-
-}
