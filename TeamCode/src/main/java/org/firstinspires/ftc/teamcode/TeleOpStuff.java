@@ -23,6 +23,7 @@ public class TeleOpStuff {
         private Servo theServo;
 
         // Init gamepad, motors + servo
+        @Override
         public void runOpMode() {
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
