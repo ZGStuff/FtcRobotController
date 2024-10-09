@@ -18,7 +18,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor frontRight;
         private DcMotor backLeft;
         private DcMotor backRight;
-//        private DcMotor armBase;
+        private DcMotor armBase;
 //        private ColorSensor colSense;
 //        private Servo theServo;
 
@@ -29,7 +29,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
             backLeft = hardwareMap.get(DcMotor.class, "backLeft");
             backRight = hardwareMap.get(DcMotor.class, "backRight");
-//            armBase = hardwareMap.get(DcMotor.class, "armBase");
+            armBase = hardwareMap.get(DcMotor.class, "armBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
 //            theServo = hardwareMap.get(Servo.class, "theServo");
 
