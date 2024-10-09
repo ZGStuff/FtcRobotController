@@ -20,7 +20,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor backRight;
         private DcMotor armBase;
 //        private ColorSensor colSense;
-//        private Servo theServo;
+        private Servo theServo;
 
         // Init gamepad, motors + servo
         @Override
@@ -31,7 +31,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             backRight = hardwareMap.get(DcMotor.class, "backRight");
             armBase = hardwareMap.get(DcMotor.class, "armBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
-//            theServo = hardwareMap.get(Servo.class, "theServo");
+            theServo = hardwareMap.get(Servo.class, "theServo");
 
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -71,12 +71,12 @@ import com.qualcomm.robotcore.hardware.Servo;
                 backLeft.setPower(leftBackPower);
                 backRight.setPower(rightBackPower);
 
-                // Gamepad servo movement code
-//                if (gamepad2.left_bumper) {
-//                    theServo.setPosition(1);
-//                } else {
-//                    theServo.setPosition(0);
-//                }
+               //  Gamepad servo movement code
+                if (gamepad2.left_bumper) {
+                    theServo.setPosition(1);
+                } else {
+                    theServo.setPosition(0);
+                }
 
 
 

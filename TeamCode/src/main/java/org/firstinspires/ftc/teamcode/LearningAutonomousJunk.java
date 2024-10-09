@@ -7,12 +7,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
     @Autonomous(name = "LinearAuto")
     public class LearningAutonomousJunk extends LinearOpMode{
-
+        // call all motors
         private DcMotor frontLeft;
         private DcMotor frontRight;
         private DcMotor backLeft;
         private DcMotor backRight;
         private DcMotor armBase;
+        // functions for movement
         void forwardField() {
             frontLeft.setPower(0.5);
             frontRight.setPower(0.5);
@@ -37,6 +38,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             backLeft.setPower(0);
             backRight.setPower(0);
         }
+        // the opmode code itself
         public void runOpMode() throws InterruptedException {
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
