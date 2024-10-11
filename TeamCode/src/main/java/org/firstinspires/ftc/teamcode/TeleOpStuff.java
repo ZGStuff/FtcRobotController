@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             backLeft.setDirection(DcMotor.Direction.REVERSE);
+            armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             // Main loop for the motors
             waitForStart();
             while (opModeIsActive()) {
@@ -89,12 +90,13 @@ import com.qualcomm.robotcore.hardware.Servo;
                 }
                // Gamepad 2 v-arm movement code
                 if (gamepad2.dpad_up) {
-                    armBase.setPower(0.1);
+                    armBase.setPower(1);
+
                 } else {
                     armBase.setPower(0);
                 }
                 if (gamepad2.dpad_down) {
-                    armBase.setPower(-0.1);
+                    armBase.setPower(-1);
                 } else {
                     armBase.setPower(0);
                 }
