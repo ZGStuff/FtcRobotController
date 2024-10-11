@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.ColorRangeSensor;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -20,7 +21,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor backRight;
         private DcMotor armBase;
 //        private ColorSensor colSense;
-        private Servo theServo;
+        private CRServo theServo;
 
         // Init gamepad, motors + servo
         @Override
@@ -31,7 +32,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             backRight = hardwareMap.get(DcMotor.class, "backRight");
             armBase = hardwareMap.get(DcMotor.class, "armBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
-            theServo = hardwareMap.get(Servo.class, "theServo");
+            theServo = hardwareMap.get(CRServo.class, "theServo");
 
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -73,12 +74,19 @@ import com.qualcomm.robotcore.hardware.Servo;
 
                //  Gamepad servo movement code
                 if (gamepad2.left_bumper) {
-                    theServo.setPosition(1);
+                    while (gamepad2.left_bumper) {
+                        theServo.setPower(1);
+                    }
                 } else {
-                    theServo.setPosition(0);
+                    theServo.setPower(0);
                 }
-
-
+                if (gamepad2.right_bumper) {
+                    while (gamepad2.right_bumper) {
+                        theServo.setPower(-0.5);
+                    }
+                } else {
+                    theServo.setPower(0);
+                }
 
                 // Old code below
                 // double max;
