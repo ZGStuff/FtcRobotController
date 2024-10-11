@@ -87,6 +87,17 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     theServo.setPower(0);
                 }
+               // Gamepad 2 v-arm movement code
+                if (gamepad2.dpad_up) {
+                    armBase.setPower(0.1);
+                } else {
+                    armBase.setPower(0);
+                }
+                if (gamepad2.dpad_down) {
+                    armBase.setPower(-0.1);
+                } else {
+                    armBase.setPower(0);
+                }
 
                 // Old code below
                 // double max;
