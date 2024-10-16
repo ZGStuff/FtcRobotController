@@ -102,9 +102,7 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     armBase.setPower(0);
                 }
-/*
- change above code to elif?
-                // Gamepad 2 intake slider movement code
+               // Gamepad 2 intake slider movement code
                 if (gamepad2.dpad_left) {
                     armBase.setPower(1);
 
@@ -116,6 +114,9 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     armBase.setPower(0);
                 }
+/*
+ change above code to elif?
+
                 // Old code below
                 // double max;
 
