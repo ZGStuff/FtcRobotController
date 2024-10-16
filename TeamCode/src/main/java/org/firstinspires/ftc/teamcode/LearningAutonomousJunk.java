@@ -47,7 +47,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         void deathOfBee() {
             armBase.setPower(0);
         }
-        void aroundTheWorldAroundTheWorld() {
+        void aroundTheWorld() {
             forwardField();
             sleep(1500);
             turnRight();
@@ -88,5 +88,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             intakeSliderBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             // aroundTheWorldAroundTheWorld();
             toTheSky();
+            aroundTheWorld();
         }
 }
