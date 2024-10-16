@@ -20,6 +20,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor backLeft;
         private DcMotor backRight;
         private DcMotor armBase;
+        private DcMotor intakeSliderBase;
 //        private ColorSensor colSense;
         private CRServo theServo;
 
@@ -31,6 +32,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             backLeft = hardwareMap.get(DcMotor.class, "backLeft");
             backRight = hardwareMap.get(DcMotor.class, "backRight");
             armBase = hardwareMap.get(DcMotor.class, "armBase");
+            intakeSliderBase = hardwareMap.get(DcMotor.class, "intakeSliderBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
             theServo = hardwareMap.get(CRServo.class, "theServo");
 
@@ -88,7 +90,7 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     theServo.setPower(0);
                 }
-               // Gamepad 2 v-arm movement code
+               // Gamepad 2 v-arm slider movement code
                 if (gamepad2.dpad_up) {
                     armBase.setPower(1);
 
@@ -100,7 +102,18 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     armBase.setPower(0);
                 }
+                // Gamepad 2 intake slider movement code
+                if (gamepad2.dpad_left) {
+                    armBase.setPower(1);
 
+                } else {
+                    armBase.setPower(0);
+                }
+                if (gamepad2.dpad_right) {
+                    armBase.setPower(-1);
+                } else {
+                    armBase.setPower(0);
+                }
                 // Old code below
                 // double max;
 
