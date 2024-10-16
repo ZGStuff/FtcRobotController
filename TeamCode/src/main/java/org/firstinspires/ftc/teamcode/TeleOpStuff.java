@@ -94,26 +94,21 @@ import com.qualcomm.robotcore.hardware.Servo;
                 if (gamepad2.dpad_up) {
                     armBase.setPower(1);
 
-                } else {
-                    armBase.setPower(0);
-                }
-                if (gamepad2.dpad_down) {
+                } else if (gamepad2.dpad_down) {
                     armBase.setPower(-1);
                 } else {
                     armBase.setPower(0);
                 }
+
                // Gamepad 2 intake slider movement code
                 if (gamepad2.dpad_left) {
                     intakeSliderBase.setPower(1);
-
-                } else {
-                    intakeSliderBase.setPower(0);
-                }
-                if (gamepad2.dpad_right) {
+                } else if (gamepad2.dpad_right) {
                     intakeSliderBase.setPower(-1);
                 } else {
                     intakeSliderBase.setPower(0);
                 }
+
 /*
  change above code to elif?
 

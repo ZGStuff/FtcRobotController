@@ -45,6 +45,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             armBase.setPower(1);
         }
         void deathOfBee() {
+            armBase.setPower(-1);
+            sleep(800);
             armBase.setPower(0);
         }
         void aroundTheWorld() {
