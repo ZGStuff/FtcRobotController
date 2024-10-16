@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 
@@ -13,6 +14,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         private DcMotor backLeft;
         private DcMotor backRight;
         private DcMotor armBase;
+        private DcMotor intakeSliderBase;
+        private CRServo theServo;
         // functions for movement
         void forwardField() {
             frontLeft.setPower(0.5);
@@ -38,6 +41,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             backLeft.setPower(0);
             backRight.setPower(0);
         }
+        void flightOfBee() {
+            armBase.setPower(1);
+        }
+        void deathOfBee() {
+            armBase.setPower(0);
+        }
         void aroundTheWorldAroundTheWorld() {
             forwardField();
             sleep(1500);
@@ -57,6 +66,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             sleep(250);
             stopAllMotors();
         }
+        void toTheSky() {
+            forwardField();
+            sleep(750);
+            flightOfBee();
+            sleep(800);
+            deathOfBee();
+        }
         // the opmode code itself
         public void runOpMode() throws InterruptedException {
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
@@ -64,8 +80,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             backLeft = hardwareMap.get(DcMotor.class, "backLeft");
             backRight = hardwareMap.get(DcMotor.class, "backRight");
             armBase = hardwareMap.get(DcMotor.class, "armBase");
+            intakeSliderBase = hardwareMap.get(DcMotor.class, "intakeSliderBase");
+            theServo = hardwareMap.get(CRServo.class, "theServo");
             waitForStart();
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
-            aroundTheWorldAroundTheWorld();
+            armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            intakeSliderBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            // aroundTheWorldAroundTheWorld();
+            toTheSky();
         }
 }
