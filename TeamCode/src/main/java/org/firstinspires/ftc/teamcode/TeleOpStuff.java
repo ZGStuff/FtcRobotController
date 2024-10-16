@@ -100,60 +100,61 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     armBase.setPower(0);
                 }
+/*
+ change above code to elif?
 
-                // Old code below
-                // double max;
 
-                // double axial = -gamepad1.left_stick_y;
-                // double lateral = gamepad1.left_stick_x;
-                // double yaw = gamepad1.right_stick_x;
+ Old code below
+ double max;
+ double axial = -gamepad1.left_stick_y;
+ double lateral = gamepad1.left_stick_x;
+ double yaw = gamepad1.right_stick_x;
+ double frontLeftPwr = axial + lateral + yaw;
+ double frontRightPwr = axial - lateral - yaw;
+ double backLeftPwr = axial - lateral + yaw;
+ double backRightPwr = axial + lateral - yaw;
+ max = Math.max(Math.abs(frontLeftPwr), Math.abs(frontRightPwr));
+ max = Math.max(max, Math.abs(backLeftPwr));
+ max = Math.max(max, Math.abs(backRightPwr));
+ if (max > 1.0) {
+   frontLeftPwr /= max;
+   frontRightPwr /= max;
+   backLeftPwr /= max;
+   backRightPwr /= max;
+ }
+ frontLeft.setPower(frontLeftPwr * 0.75);
+ frontRight.setPower(frontRightPwr * 0.75);
+ backLeft.setPower(backLeftPwr * 0.75);
+ backRight.setPower(backRightPwr * 0.75);
+      if (gamepad1.left_stick_y == -1) {
+        frontLeft.setPower(0.5);
+        frontRight.setPower(0.5);
+        backLeft.setPower(-0.5);
+        backRight.setPower(-0.5);
+      } else if (gamepad1.left_stick_y == 1) {
+        frontLeft.setPower(-0.5);
+        frontRight.setPower(-0.5);
+        backLeft.setPower(0.5);
+        backRight.setPower(-0.5);
+      } else if (gamepad1.left_stick_x == -1){
+        frontLeft.setPower(-0.5);
+        frontRight.setPower(0.5);
+        backLeft.setPower(0.5);
+        backRight.setPower(0.5);
+      } else if (gamepad1.left_stick_x == 1) {
+        frontLeft.setPower(0.5);
+        frontRight.setPower(-0.5);
+        backLeft.setPower(-0.5);
+        backRight.setPower(-0.5);
+      } else {
+        frontLeft.setPower(0);
+        frontRight.setPower(0);
+        backLeft.setPower(0);
+        backRight.setPower(0);
+      }
+*/
 
-                // double frontLeftPwr = axial + lateral + yaw;
-                // double frontRightPwr = axial - lateral - yaw;
-                // double backLeftPwr = axial - lateral + yaw;
-                // double backRightPwr = axial + lateral - yaw;
 
-                // max = Math.max(Math.abs(frontLeftPwr), Math.abs(frontRightPwr));
-                // max = Math.max(max, Math.abs(backLeftPwr));
-                // max = Math.max(max, Math.abs(backRightPwr));
-
-                // if (max > 1.0) {
-                //   frontLeftPwr /= max;
-                //   frontRightPwr /= max;
-                //   backLeftPwr /= max;
-                //   backRightPwr /= max;
-                // }
-
-                // frontLeft.setPower(frontLeftPwr * 0.75);
-                // frontRight.setPower(frontRightPwr * 0.75);
-                // backLeft.setPower(backLeftPwr * 0.75);
-                // backRight.setPower(backRightPwr * 0.75);
-//      if (gamepad1.left_stick_y == -1) {
-//        frontLeft.setPower(0.5);
-//        frontRight.setPower(0.5);
-//        backLeft.setPower(-0.5);
-//        backRight.setPower(-0.5);
-//      } else if (gamepad1.left_stick_y == 1) {
-//        frontLeft.setPower(-0.5);
-//        frontRight.setPower(-0.5);
-//        backLeft.setPower(0.5);
-//        backRight.setPower(-0.5);
-//      } else if (gamepad1.left_stick_x == -1){
-//        frontLeft.setPower(-0.5);
-//        frontRight.setPower(0.5);
-//        backLeft.setPower(0.5);
-//        backRight.setPower(0.5);
-//      } else if (gamepad1.left_stick_x == 1) {
-//        frontLeft.setPower(0.5);
-//        frontRight.setPower(-0.5);
-//        backLeft.setPower(-0.5);
-//        backRight.setPower(-0.5);
-//      } else {
-//        frontLeft.setPower(0);
-//        frontRight.setPower(0);
-//        backLeft.setPower(0);
-//        backRight.setPower(0);
-//      }
             }
         }
     }
