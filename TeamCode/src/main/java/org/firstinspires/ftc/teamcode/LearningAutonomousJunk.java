@@ -38,15 +38,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             backLeft.setPower(0);
             backRight.setPower(0);
         }
-        // the opmode code itself
-        public void runOpMode() throws InterruptedException {
-            frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
-            frontRight = hardwareMap.get(DcMotor.class, "frontRight");
-            backLeft = hardwareMap.get(DcMotor.class, "backLeft");
-            backRight = hardwareMap.get(DcMotor.class, "backRight");
-            armBase = hardwareMap.get(DcMotor.class, "armBase");
-            waitForStart();
-            frontLeft.setDirection(DcMotor.Direction.REVERSE);
+        void aroundTheWorldAroundTheWorld() {
             forwardField();
             sleep(1500);
             turnRight();
@@ -64,6 +56,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             turnRight();
             sleep(250);
             stopAllMotors();
-
+        }
+        // the opmode code itself
+        public void runOpMode() throws InterruptedException {
+            frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
+            frontRight = hardwareMap.get(DcMotor.class, "frontRight");
+            backLeft = hardwareMap.get(DcMotor.class, "backLeft");
+            backRight = hardwareMap.get(DcMotor.class, "backRight");
+            armBase = hardwareMap.get(DcMotor.class, "armBase");
+            waitForStart();
+            frontLeft.setDirection(DcMotor.Direction.REVERSE);
+            aroundTheWorldAroundTheWorld();
         }
 }
