@@ -38,7 +38,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             backLeft.setPower(0);
             backRight.setPower(0);
         }
-        void aroundTheWorldAroundTheWorld() {
+        void aroundTheWorld() {
             forwardField();
             sleep(1500);
             turnRight();
@@ -66,6 +66,6 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             armBase = hardwareMap.get(DcMotor.class, "armBase");
             waitForStart();
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
-            aroundTheWorldAroundTheWorld();
+            aroundTheWorld();
         }
 }
