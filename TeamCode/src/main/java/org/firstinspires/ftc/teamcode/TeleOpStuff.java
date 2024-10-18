@@ -23,6 +23,8 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor intakeSliderBase;
 //        private ColorSensor colSense;
         private CRServo theServo;
+        private CRServo theUpAndDownServo;
+        private DcMotor varmClaw;
 
         // Init gamepad, motors + servo
         @Override
@@ -35,6 +37,8 @@ import com.qualcomm.robotcore.hardware.Servo;
             intakeSliderBase = hardwareMap.get(DcMotor.class, "intakeSliderBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
             theServo = hardwareMap.get(CRServo.class, "theServo");
+            theUpAndDownServo = hardwareMap.get(CRServo.class, "theUpAndDownServo");
+            varmClaw = hardwareMap.get(DcMotor.class, "varmClaw");
 
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -107,6 +111,15 @@ import com.qualcomm.robotcore.hardware.Servo;
                     intakeSliderBase.setPower(-1);
                 } else {
                     intakeSliderBase.setPower(0);
+                }
+               // Gamepad 2 v-arm claw code
+                if (gamepad2.a) {
+                    varmClaw.setPower(1);
+
+                } else if (gamepad2.b) {
+                    varmClaw.setPower(-1);
+                } else {
+                    varmClaw.setPower(0);
                 }
 
 /*
