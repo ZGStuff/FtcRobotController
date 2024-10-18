@@ -57,6 +57,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             armBase.setPower(0);
         }
 
+        void moveThatServo() {
+            theServo.setPower(1);
+        }
         void aroundTheWorld() {
             forwardField();
             sleep(1500);
@@ -85,6 +88,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             noMoreHighArm();
         }
 
+        // the opmode code itself
+
         // Actual OpCode
 
         public void runOpMode() throws InterruptedException {
@@ -108,4 +113,4 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 }
 
 
-// 
+//
