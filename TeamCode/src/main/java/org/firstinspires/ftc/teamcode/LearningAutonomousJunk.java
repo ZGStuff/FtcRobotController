@@ -49,6 +49,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             sleep(800);
             armBase.setPower(0);
         }
+        void moveThatServo() {
+            theServo.setPower(1);
+        }
         void aroundTheWorld() {
             forwardField();
             sleep(1500);
@@ -75,6 +78,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             sleep(800);
             deathOfBee();
         }
+
         // the opmode code itself
         public void runOpMode() throws InterruptedException {
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
