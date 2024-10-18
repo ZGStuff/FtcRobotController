@@ -41,10 +41,10 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             backLeft.setPower(0);
             backRight.setPower(0);
         }
-        void flightOfBee() {
+        void armGoesUp() {
             armBase.setPower(1);
         }
-        void deathOfBee() {
+        void noMoreHighArm() {
             armBase.setPower(-1);
             sleep(800);
             armBase.setPower(0);
@@ -71,9 +71,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         void toTheSky() {
             forwardField();
             sleep(750);
-            flightOfBee();
+            armGoesUp();
             sleep(800);
-            deathOfBee();
+            noMoreHighArm();
         }
         // the opmode code itself
         public void runOpMode() throws InterruptedException {
