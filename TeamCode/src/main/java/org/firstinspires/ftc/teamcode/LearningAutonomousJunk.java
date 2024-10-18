@@ -5,10 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.CRServo;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-
     @Autonomous(name = "LinearAuto")
     public class LearningAutonomousJunk extends LinearOpMode{
-        // call all motors
+
+        // Call all Motors
+
         private DcMotor frontLeft;
         private DcMotor frontRight;
         private DcMotor backLeft;
@@ -16,31 +17,37 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         private DcMotor armBase;
         private DcMotor intakeSliderBase;
         private CRServo theServo;
-        // functions for movement
+
+        // Functions for Movement
+
         void forwardField() {
             frontLeft.setPower(0.5);
             frontRight.setPower(0.5);
             backLeft.setPower(0.5);
             backRight.setPower(0.5);
         }
+
         void turnRight() {
             frontLeft.setPower(0.5);
             frontRight.setPower(0);
             backLeft.setPower(0);
             backRight.setPower(0.5);
         }
+
         void turnLeft() {
             frontLeft.setPower(0);
             frontRight.setPower(0.5);
             backLeft.setPower(0.5);
             backRight.setPower(0);
         }
+
         void stopAllMotors() {
             frontLeft.setPower(0);
             frontRight.setPower(0);
             backLeft.setPower(0);
             backRight.setPower(0);
         }
+
         void armGoesUp() {
             armBase.setPower(1);
         }
@@ -49,6 +56,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             sleep(800);
             armBase.setPower(0);
         }
+
         void aroundTheWorld() {
             forwardField();
             sleep(1500);
@@ -68,6 +76,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             sleep(250);
             stopAllMotors();
         }
+
         void toTheSky() {
             forwardField();
             sleep(750);
@@ -75,7 +84,9 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             sleep(800);
             noMoreHighArm();
         }
-        // the opmode code itself
+
+        // Actual OpCode
+
         public void runOpMode() throws InterruptedException {
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
@@ -88,8 +99,13 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             intakeSliderBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
             // aroundTheWorldAroundTheWorld();
+
             toTheSky();
             aroundTheWorld();
         }
 }
+
+
+// 
