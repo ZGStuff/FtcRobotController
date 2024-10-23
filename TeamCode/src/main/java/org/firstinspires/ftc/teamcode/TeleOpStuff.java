@@ -21,12 +21,13 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor backRight;
         private DcMotor armBase;
         private DcMotor intakeSliderBase;
-//        private ColorSensor colSense;
+        // private ColorSensor colSense;
         private CRServo theServo;
         private CRServo theUpAndDownServo;
         private DcMotor varmClaw;
 
         // Init gamepad, motors + servo
+
         @Override
         public void runOpMode() {
             // Define all motors and servos
@@ -114,6 +115,7 @@ import com.qualcomm.robotcore.hardware.Servo;
                 }
 
                // Gamepad 2 intake slider movement code
+
                 if (gamepad2.dpad_left) {
                     if (otherPos == 10) {
                         intakeSliderBase.setPower(1);
