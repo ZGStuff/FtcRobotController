@@ -29,6 +29,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         // Init gamepad, motors + servo
         @Override
         public void runOpMode() {
+            // Define all motors and servos
             frontLeft = hardwareMap.get(DcMotor.class, "frontLeft");
             frontRight = hardwareMap.get(DcMotor.class, "frontRight");
             backLeft = hardwareMap.get(DcMotor.class, "backLeft");
@@ -40,6 +41,9 @@ import com.qualcomm.robotcore.hardware.Servo;
             theUpAndDownServo = hardwareMap.get(CRServo.class, "theUpAndDownServo");
             varmClaw = hardwareMap.get(DcMotor.class, "varmClaw");
 
+            // Variables
+            int currentPos = armBase.getCurrentPosition();
+            int otherPos = intakeSliderBase.getCurrentPosition();
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             backLeft.setDirection(DcMotor.Direction.REVERSE);
@@ -96,7 +100,12 @@ import com.qualcomm.robotcore.hardware.Servo;
                 }
                // Gamepad 2 v-arm slider movement code
                 if (gamepad2.dpad_up) {
-                    armBase.setPower(1);
+                    if (currentPos == 5) {
+                        armBase.setPower(1);
+                    } else {
+                        armBase.setPower(0);
+                    }
+
 
                 } else if (gamepad2.dpad_down) {
                     armBase.setPower(-1);
@@ -106,7 +115,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 
                // Gamepad 2 intake slider movement code
                 if (gamepad2.dpad_left) {
-                    intakeSliderBase.setPower(1);
+                    if (otherPos == 10) {
+                        intakeSliderBase.setPower(1);
+                    } else {
+                        intakeSliderBase.setPower(0);
+                    }
                 } else if (gamepad2.dpad_right) {
                     intakeSliderBase.setPower(-1);
                 } else {
