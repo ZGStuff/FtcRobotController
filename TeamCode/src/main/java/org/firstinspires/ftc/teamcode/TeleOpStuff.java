@@ -40,10 +40,11 @@ import com.qualcomm.robotcore.hardware.Servo;
             intakeSliderBase = hardwareMap.get(DcMotor.class, "intakeSliderBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
             theServo = hardwareMap.get(CRServo.class, "theServo");
-            //theUpAndDownServo = hardwareMap.get(CRServo.class, "theUpAndDownServo");
-            //rotaenoWha = hardwareMap.get(CRServo.class, "rotaenoWha");
+            theUpAndDownServo = hardwareMap.get(CRServo.class, "theUpAndDownServo");
+            rotaenoWha = hardwareMap.get(CRServo.class, "rotaenoWha");
             //varmClaw = hardwareMap.get(DcMotor.class, "varmClaw");
-
+            intakeSliderBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            intakeSliderBase.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             // Variables
             int currentPos = armBase.getCurrentPosition();
             int otherPos = intakeSliderBase.getCurrentPosition();
@@ -139,13 +140,13 @@ import com.qualcomm.robotcore.hardware.Servo;
                         intakeSliderBase.setPower(0);
                     }
                 }
-//                if (gamepad2.left_trigger > 0.1){
-//                    rotaenoWha.setPower(1);
-//                } else if (gamepad2.right_trigger > 0.1){
-//                    rotaenoWha.setPower(-1);
-//                } else {
-//                    rotaenoWha.setPower(0);
-//                }
+                if (gamepad2.left_trigger > 0.1){
+                    rotaenoWha.setPower(1);
+                } else if (gamepad2.right_trigger > 0.1){
+                    rotaenoWha.setPower(-1);
+                } else {
+                    rotaenoWha.setPower(0);
+                }
                // Gamepad 2 v-arm claw code
 //                if (gamepad2.a) {
 //                    varmClaw.setPower(1);
@@ -155,7 +156,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 //                } else {
 //                    varmClaw.setPower(0);
 //                }
-
+                telemetry.addData("encoderPos", intakeSliderBase.getCurrentPosition());
+                
 /*
  change above code to elif?
 
