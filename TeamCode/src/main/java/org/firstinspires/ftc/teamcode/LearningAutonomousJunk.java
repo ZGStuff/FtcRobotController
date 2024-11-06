@@ -18,6 +18,16 @@ import com.qualcomm.robotcore.hardware.DcMotor;
         private DcMotor intakeSliderBase;
         private CRServo theServo;
 
+        // Motor ticks to distance
+        double ticks = Math.PI * 38.2 / 537.7;
+        void ticksToDist(int distance) {
+            double target = distance / ticks;
+            int roundedTarget = (int) target;
+
+            intakeSliderBase.setTargetPosition(roundedTarget);
+            intakeSliderBase.setPower(0.5); 
+        }
+
         // Functions for Movement
 
         void forwardField() {
@@ -104,6 +114,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
             intakeSliderBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            intakeSliderBase.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
             // aroundTheWorldAroundTheWorld();
 
