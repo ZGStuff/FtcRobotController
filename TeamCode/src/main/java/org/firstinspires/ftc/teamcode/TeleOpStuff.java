@@ -25,6 +25,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         private CRServo theServo;
         private CRServo theUpAndDownServo;
         private CRServo rotaenoWha;
+        private Servo bucket;
         private DcMotor varmClaw;
 
         // Init gamepad, motors + servo
@@ -42,16 +43,20 @@ import com.qualcomm.robotcore.hardware.Servo;
             theServo = hardwareMap.get(CRServo.class, "theServo");
             theUpAndDownServo = hardwareMap.get(CRServo.class, "theUpAndDownServo");
             rotaenoWha = hardwareMap.get(CRServo.class, "rotaenoWha");
+            bucket = hardwareMap.get(Servo.class,"bucket");
             //varmClaw = hardwareMap.get(DcMotor.class, "varmClaw");
             intakeSliderBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             intakeSliderBase.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             // Variables
             int currentPos = armBase.getCurrentPosition();
             int otherPos = intakeSliderBase.getCurrentPosition();
+            telemetry.addData("encoderPos", intakeSliderBase.getCurrentPosition());
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             backLeft.setDirection(DcMotor.Direction.REVERSE);
             armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
+
             // Main loop for the motors
             waitForStart();
             while (opModeIsActive()) {
@@ -90,7 +95,7 @@ import com.qualcomm.robotcore.hardware.Servo;
                //  Gamepad servo movement code
                 if (gamepad2.left_bumper) {
                     while (gamepad2.left_bumper) {
-                        theServo.setPower(1);
+                        theServo.setPower(0.5);
                     }
                 } else {
                     theServo.setPower(0);
@@ -105,47 +110,52 @@ import com.qualcomm.robotcore.hardware.Servo;
                // Gamepad 2 v-arm slider movement code
                 if (gamepad2.dpad_up) {
                     if (currentPos < 1) {
-                        armBase.setPower(1);
-                    } else {
-                        armBase.setPower(0);
+                        armBase.setPower(-0.5);
                     }
                 } else if (gamepad2.dpad_down) {
-                    if (currentPos > 0) {
-                        armBase.setPower(-1);
-                    } else {
-                        armBase.setPower(0);
+                    if (currentPos < 1) {
+                        armBase.setPower(0.5);
                     }
+                } else {
+                    armBase.setPower(0);
                 }
                // GP2 intake servo code part 2
                if (gamepad2.x) {
-                   theUpAndDownServo.setPower(1);
+                   theUpAndDownServo.setPower(0.5);
                } else if (gamepad2.y) {
-                   theUpAndDownServo.setPower(-1);
+                   theUpAndDownServo.setPower(-0.5);
                } else {
                    theUpAndDownServo.setPower(0);
                }
 
                // Gamepad 2 intake slider movement code
-
                 if (gamepad2.dpad_left) {
                     if (otherPos < 1) {
-                        intakeSliderBase.setPower(0.25);
-                    } else {
-                        intakeSliderBase.setPower(0);
+                        intakeSliderBase.setPower(0.5);
                     }
                 } else if (gamepad2.dpad_right) {
-                    if (otherPos >= 0.1) {
-                        intakeSliderBase.setPower(-0.25);
-                    } else {
-                        intakeSliderBase.setPower(0);
+                    if (otherPos < 1) {
+                        intakeSliderBase.setPower(-0.5);
                     }
+                } else {
+                    intakeSliderBase.setPower(0);
                 }
+
+                // INTAKE ROTATE-O-TRON GOOOOOOOO
                 if (gamepad2.left_trigger > 0.1){
-                    rotaenoWha.setPower(1);
-                } else if (gamepad2.right_trigger > 0.1){
-                    rotaenoWha.setPower(-1);
+                    rotaenoWha.setPower(0.5);
+                } else if (gamepad2.right_trigger > 0.1 ){
+                    rotaenoWha.setPower(-0.5);
                 } else {
                     rotaenoWha.setPower(0);
+                }
+
+                // bucket code go brrrrrr (gamepad 1)
+                if (gamepad1.a) {
+                    bucket.setPosition(1);
+                    
+                } else if (gamepad1.b) {
+                    bucket.setPosition(0.5);
                 }
                // Gamepad 2 v-arm claw code
 //                if (gamepad2.a) {
@@ -156,7 +166,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 //                } else {
 //                    varmClaw.setPower(0);
 //                }
-                telemetry.addData("encoderPos", intakeSliderBase.getCurrentPosition());
+
                 
 /*
  change above code to elif?
