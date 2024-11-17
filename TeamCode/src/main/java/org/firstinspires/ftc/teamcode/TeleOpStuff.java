@@ -23,8 +23,8 @@ import com.qualcomm.robotcore.hardware.Servo;
         private DcMotor intakeSliderBase;
         // private ColorSensor colSense;
         private CRServo theServo;
-        private CRServo theUpAndDownServo;
-        private CRServo rotaenoWha;
+        private Servo theUpAndDownServo;
+        private Servo rotaenoWha;
         private Servo bucket;
         private DcMotor varmClaw;
 
@@ -41,8 +41,8 @@ import com.qualcomm.robotcore.hardware.Servo;
             intakeSliderBase = hardwareMap.get(DcMotor.class, "intakeSliderBase");
 //            colSense = hardwareMap.get(ColorSensor.class, "colSense");
             theServo = hardwareMap.get(CRServo.class, "theServo");
-            theUpAndDownServo = hardwareMap.get(CRServo.class, "theUpAndDownServo");
-            rotaenoWha = hardwareMap.get(CRServo.class, "rotaenoWha");
+            theUpAndDownServo = hardwareMap.get(Servo.class, "theUpAndDownServo");
+            rotaenoWha = hardwareMap.get(Servo.class, "rotaenoWha");
             bucket = hardwareMap.get(Servo.class,"bucket");
             //varmClaw = hardwareMap.get(DcMotor.class, "varmClaw");
             intakeSliderBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -92,19 +92,14 @@ import com.qualcomm.robotcore.hardware.Servo;
                 backLeft.setPower(leftBackPower);
                 backRight.setPower(rightBackPower);
 
-               //  Gamepad servo movement code
+               //  Gamepad 2 intake servo movement code
                 if (gamepad2.left_bumper) {
-                    while (gamepad2.left_bumper) {
-                        theServo.setPower(0.5);
-                    }
-                } else {
-                    theServo.setPower(0);
+                    theServo.setPower(0.5);
                 }
-                if (gamepad2.right_bumper) {
-                    while (gamepad2.right_bumper) {
-                        theServo.setPower(-0.5);
-                    }
-                } else {
+                else if (gamepad2.right_bumper) {
+                    theServo.setPower(-0.5);
+                }
+                else {
                     theServo.setPower(0);
                 }
                // Gamepad 2 v-arm slider movement code
@@ -121,19 +116,21 @@ import com.qualcomm.robotcore.hardware.Servo;
                 }
                // GP2 intake servo code part 2
                if (gamepad2.x) {
-                   theUpAndDownServo.setPower(0.5);
+                   rotaenoWha.setPosition(0);
+                   sleep(250);
+                   theUpAndDownServo.setPosition(1);
                } else if (gamepad2.y) {
-                   theUpAndDownServo.setPower(-0.5);
-               } else {
-                   theUpAndDownServo.setPower(0);
+                   rotaenoWha.setPosition(1);
+                   sleep(250);
+                   theUpAndDownServo.setPosition(0.5);
                }
 
                // Gamepad 2 intake slider movement code
-                if (gamepad2.dpad_left) {
+                if (gamepad2.dpad_right) {
                     if (otherPos < 1) {
                         intakeSliderBase.setPower(0.5);
                     }
-                } else if (gamepad2.dpad_right) {
+                } else if (gamepad2.dpad_left) {
                     if (otherPos < 1) {
                         intakeSliderBase.setPower(-0.5);
                     }
@@ -142,12 +139,10 @@ import com.qualcomm.robotcore.hardware.Servo;
                 }
 
                 // INTAKE ROTATE-O-TRON GOOOOOOOO
-                if (gamepad2.left_trigger > 0.1){
-                    rotaenoWha.setPower(0.5);
-                } else if (gamepad2.right_trigger > 0.1 ){
-                    rotaenoWha.setPower(-0.5);
-                } else {
-                    rotaenoWha.setPower(0);
+                if (gamepad2.right_trigger > 0.5){
+                    rotaenoWha.setPosition(0);
+                } else if (gamepad2.left_trigger > 0.5){
+                    rotaenoWha.setPosition(1);
                 }
 
                 // bucket code go brrrrrr (gamepad 1)
