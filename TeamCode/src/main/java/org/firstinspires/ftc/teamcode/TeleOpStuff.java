@@ -48,18 +48,22 @@ import com.qualcomm.robotcore.hardware.Servo;
             intakeSliderBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             intakeSliderBase.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
             // Variables
+            double ticks = 	537.7;
             int currentPos = armBase.getCurrentPosition();
             int otherPos = intakeSliderBase.getCurrentPosition();
             telemetry.addData("encoderPos", intakeSliderBase.getCurrentPosition());
+
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             backLeft.setDirection(DcMotor.Direction.REVERSE);
             armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+            
 
 
             // Main loop for the motors
             waitForStart();
             while (opModeIsActive()) {
+                telemetry.update();
                 double leftFrontPower;
                 double rightFrontPower;
                 double leftBackPower;
@@ -127,7 +131,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
                // Gamepad 2 intake slider movement code
                 if (gamepad2.dpad_right) {
-                    if (otherPos < 1) {
+                    if (otherPos < 0.3) {
                         intakeSliderBase.setPower(0.5);
                     }
                 } else if (gamepad2.dpad_left) {
@@ -137,7 +141,7 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else {
                     intakeSliderBase.setPower(0);
                 }
-
+                
                 // INTAKE ROTATE-O-TRON GOOOOOOOO
                 if (gamepad2.right_trigger > 0.5){
                     rotaenoWha.setPosition(0);
