@@ -63,26 +63,25 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Remove or comment out the @Disabled line to add this OpMode to the Driver Station OpMode list
  */
 
-@TeleOp(name="Encoder Test for Intake")
+@TeleOp(name="TheSliderThingy")
 
 public class LimitTesterV1 extends LinearOpMode {
-
+    // int maxExtension = -3138
     // Declare OpMode members for each of the 4 motors.
     private ElapsedTime runtime = new ElapsedTime();
     private DcMotor intakeSliderBase;
-
+    double ticks = 537.7;
+    double newTarget;
     @Override
     public void runOpMode() {
 
         // Initialize the hardware variables. Note that the strings used here must correspond
         // to the names assigned during the robot configuration step on the DS or RC devices.
         intakeSliderBase = hardwareMap.get(DcMotor.class, "intakeSliderBase");
-        intakeSliderBase.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        intakeSliderBase.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         intakeSliderBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        double ticks = 537.7;
+
         double currentHSlidePos = 0;
-
-
 
         // Wait for the game to start (driver presses START)
         telemetry.addData("Status", "Initialized");
@@ -95,6 +94,13 @@ public class LimitTesterV1 extends LinearOpMode {
         while (opModeIsActive()) {
             currentHSlidePos = intakeSliderBase.getCurrentPosition();
             telemetry.addData("Intake Slide Pos", currentHSlidePos);
+            telemetry.addData("Intake Slide Pwr", intakeSliderBase.getPower());
             telemetry.update();
+
+
         }
+//        public void encoder(int turnage) {
+//
+//        }
+
     }}

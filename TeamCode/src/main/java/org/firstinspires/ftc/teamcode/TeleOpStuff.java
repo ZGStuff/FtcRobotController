@@ -51,24 +51,26 @@ import com.qualcomm.robotcore.hardware.Servo;
             double ticks = 	537.7;
             int currentPos = armBase.getCurrentPosition();
             int otherPos = intakeSliderBase.getCurrentPosition();
-            telemetry.addData("encoderPos", intakeSliderBase.getCurrentPosition());
+
 
             // Put initialization blocks here.
             frontLeft.setDirection(DcMotor.Direction.REVERSE);
             backLeft.setDirection(DcMotor.Direction.REVERSE);
             armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-            
+
 
 
             // Main loop for the motors
             waitForStart();
             while (opModeIsActive()) {
-                telemetry.update();
+
                 double leftFrontPower;
                 double rightFrontPower;
                 double leftBackPower;
                 double rightBackPower;
-
+                otherPos = intakeSliderBase.getCurrentPosition();
+                telemetry.addData("encoder position of the intake!!!!", otherPos);
+                telemetry.update();
                 // Gamepad movement code
                 double drive = -gamepad1.left_stick_y;
                 double strafe = gamepad1.left_stick_x;
@@ -131,7 +133,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 
                // Gamepad 2 intake slider movement code
                 if (gamepad2.dpad_right) {
-                    if (otherPos < 0.3) {
+                    if (otherPos > -2610) {
                         intakeSliderBase.setPower(0.5);
                     }
                 } else if (gamepad2.dpad_left) {
