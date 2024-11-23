@@ -26,39 +26,49 @@ public class AutoBucketBuffoonery extends LinearOpMode {
         bucket = hardwareMap.get(Servo.class, "bucket");
         frontLeft.setDirection(DcMotor.Direction.REVERSE);
         backLeft.setDirection(DcMotor.Direction.REVERSE);
-
+        armBase.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         waitForStart();
 
 
 
-
+        frontLeft.setPower(0.5);
+        frontRight.setPower(-0.5);
+        backRight.setPower(0.5);
+        backLeft.setPower(-0.5);
+        sleep(400);
         frontLeft.setPower(0.5);
         frontRight.setPower(0.5);
         backLeft.setPower(0.5);
         backRight.setPower(0.5);
-        sleep(1000);
+        sleep(1450);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
         backRight.setPower(0);
         sleep(500);
         frontLeft.setPower(0.5);
-        backRight.setPower(-0.5);
+        frontRight.setPower(-0.5);
         backLeft.setPower(0.5);
         backRight.setPower(-0.5);
-        sleep(250);
+        sleep(600);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
         backRight.setPower(0);
         sleep(500);
-        armBase.setPower(0.5);
-        sleep(300);
-        bucket.setPosition(1);
-        sleep(500);
-        bucket.setPosition(0.5);
+        frontLeft.setPower(0.5);
+        frontRight.setPower(-0.5);
+        backRight.setPower(0.5);
+        backLeft.setPower(-0.5);
+        sleep(100);
         armBase.setPower(-0.5);
-        sleep(400);
+        sleep(6500);
+        armBase.setPower(0);
+        bucket.setPosition(1);
+        sleep(850);
+        bucket.setPosition(0.5);
+        armBase.setPower(0.5);
+        sleep(1000);
         armBase.setPower(0);
     }
 }
