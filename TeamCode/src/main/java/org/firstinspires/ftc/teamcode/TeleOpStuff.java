@@ -81,23 +81,23 @@ import com.qualcomm.robotcore.hardware.Servo;
                 leftBackPower = Range.clip(drive + turn - strafe, -1, 1);
                 rightBackPower = Range.clip(drive - turn + strafe, -1, 1);
                 if (gamepad1.left_bumper) {
-                    leftFrontPower /= 4;
-                    leftBackPower /= 4;
-                    rightFrontPower /= 4;
-                    rightBackPower /= 4;
-                }
-
-                if (gamepad1.right_bumper) {
                     leftFrontPower /= 2;
                     leftBackPower /= 2;
                     rightFrontPower /= 2;
-                    rightBackPower /= 2;
+                    rightBackPower /= 2 ;
                 }
 
-                frontLeft.setPower(leftFrontPower);
-                frontRight.setPower(rightFrontPower);
-                backLeft.setPower(leftBackPower);
-                backRight.setPower(rightBackPower);
+                if (gamepad1.right_bumper) {
+                    leftFrontPower *= 1.8;
+                    leftBackPower *= 1.8;
+                    rightFrontPower *= 1.8;
+                    rightBackPower *= 1.8;
+                }
+
+                frontLeft.setPower(leftFrontPower /= 1.8);
+                frontRight.setPower(rightFrontPower /= 1.8);
+                backLeft.setPower(leftBackPower /= 1.8);
+                backRight.setPower(rightBackPower /= 1.8);
 
                //  Gamepad 2 intake servo movement code
                 if (gamepad2.left_bumper) {
@@ -112,11 +112,11 @@ import com.qualcomm.robotcore.hardware.Servo;
                // Gamepad 2 v-arm slider movement code
                 if (gamepad2.dpad_up) {
                     if (currentPos < 1) {
-                        armBase.setPower(-0.5);
+                        armBase.setPower(-0.75);
                     }
                 } else if (gamepad2.dpad_down) {
                     if (currentPos < 1) {
-                        armBase.setPower(0.5);
+                        armBase.setPower(0.75);
                     }
                 } else {
                     armBase.setPower(0);
