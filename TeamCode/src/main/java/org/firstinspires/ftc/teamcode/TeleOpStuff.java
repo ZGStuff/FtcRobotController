@@ -26,6 +26,7 @@ import com.qualcomm.robotcore.hardware.Servo;
         private Servo theUpAndDownServo;
         private Servo rotaenoWha;
         private Servo bucket;
+        private Servo specimenEater;
         private DcMotor varmClaw;
 
         // Init gamepad, motors + servo
@@ -44,6 +45,7 @@ import com.qualcomm.robotcore.hardware.Servo;
             theUpAndDownServo = hardwareMap.get(Servo.class, "theUpAndDownServo");
             rotaenoWha = hardwareMap.get(Servo.class, "rotaenoWha");
             bucket = hardwareMap.get(Servo.class,"bucket");
+            specimenEater = hardwareMap.get(Servo.class, "specimenEater");
             //varmClaw = hardwareMap.get(DcMotor.class, "varmClaw");
             intakeSliderBase.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
             intakeSliderBase.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
@@ -101,10 +103,10 @@ import com.qualcomm.robotcore.hardware.Servo;
 
                //  Gamepad 2 intake servo movement code
                 if (gamepad2.left_bumper) {
-                    theServo.setPower(0.5);
+                    theServo.setPower(0.25);
                 }
                 else if (gamepad2.right_bumper) {
-                    theServo.setPower(-0.5);
+                    theServo.setPower(-0.25);
                 }
                 else {
                     theServo.setPower(0);
@@ -158,6 +160,12 @@ import com.qualcomm.robotcore.hardware.Servo;
                     
                 } else if (gamepad1.b) {
                     bucket.setPosition(0.5);
+                }
+                // gamepad 2 specimen
+                if (gamepad2.a) {
+                    specimenEater.setPosition(1);
+                } else if (gamepad2.b) {
+                    specimenEater.setPosition(0);
                 }
                // Gamepad 2 v-arm claw code
 //                if (gamepad2.a) {

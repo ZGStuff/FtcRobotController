@@ -98,9 +98,7 @@ public class LimitTesterV1 extends LinearOpMode {
             telemetry.update();
 
 
-        }
-//        public void encoder(int turnage) {
-//
-//        }
 
-    }}
+
+
+    }}}
