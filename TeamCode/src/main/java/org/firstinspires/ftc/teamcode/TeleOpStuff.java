@@ -161,10 +161,10 @@ import com.qualcomm.robotcore.hardware.Servo;
                 } else if (gamepad1.b) {
                     bucket.setPosition(0.5);
                 }
-                // gamepad 2 specimen
-                if (gamepad2.a) {
+                // gamepad 1 specimen
+                if (gamepad1.x) {
                     specimenEater.setPosition(1);
-                } else if (gamepad2.b) {
+                } else if (gamepad1.y) {
                     specimenEater.setPosition(0);
                 }
                // Gamepad 2 v-arm claw code
