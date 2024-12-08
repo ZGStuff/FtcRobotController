@@ -42,7 +42,7 @@ public class TheBetterOneIGuess extends LinearOpMode {
         frontRight.setPower(0.75);
         backLeft.setPower(0.75);
         backRight.setPower(0.75);
-        sleep(978);
+        sleep(950);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
@@ -52,7 +52,7 @@ public class TheBetterOneIGuess extends LinearOpMode {
         frontRight.setPower(-0.75);
         backLeft.setPower(0.75);
         backRight.setPower(-0.75);
-        sleep(337);
+        sleep(200);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
@@ -73,7 +73,7 @@ public class TheBetterOneIGuess extends LinearOpMode {
         frontRight.setPower(-0.75);
         backRight.setPower(0.75);
         backLeft.setPower(-0.75);
-        sleep(135);
+        sleep(120);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
@@ -81,23 +81,23 @@ public class TheBetterOneIGuess extends LinearOpMode {
         armBase.setPower(0.75);
         sleep(4050);
         armBase.setPower(0);
-        sleep(202);
+        sleep(50);
         frontLeft.setPower(0.75);
         frontRight.setPower(-0.75);
         backRight.setPower(0.75);
         backLeft.setPower(-0.75);
-        sleep(810);
+        sleep(600);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
         backRight.setPower(0);
-        sleep(337);
+        sleep(10);
         // starting turn
         frontLeft.setPower(-0.75);
         frontRight.setPower(0.75);
         backLeft.setPower(-0.75);
         backRight.setPower(0.75);
-        sleep(472);
+        sleep(425);
         frontLeft.setPower(0);
         frontRight.setPower(0);
         backLeft.setPower(0);
@@ -145,23 +145,19 @@ public class TheBetterOneIGuess extends LinearOpMode {
         frontRight.setPower(0.75);
         backLeft.setPower(0.75);
         backRight.setPower(0.75);
-        sleep(168);
+        sleep(300);
         frontLeft.setPower(-0.75);
         frontRight.setPower(0.75);
         backRight.setPower(-0.75);
         backLeft.setPower(0.75);
-        sleep(1788);
+        sleep(1650);
         // back to start (?)
         frontLeft.setPower(-0.75);
         frontRight.setPower(-0.75);
         backLeft.setPower(-0.75);
         backRight.setPower(-0.75);
-        sleep(2193);
-        frontLeft.setPower(-0.75);
-        frontRight.setPower(0.75);
-        backRight.setPower(-0.75);
-        backLeft.setPower(0.75);
-        sleep(370);
+        sleep(2300);
+
 
     }
 }
